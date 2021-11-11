@@ -13,5 +13,5 @@ addons:
 install:
   - "[ $GCC = gcc ] && export GCC=gcc || true"
 script:
-  - cd LEONARDO/sorter; make
+  - cd LEONARDO/sort; make
 #  - make test
