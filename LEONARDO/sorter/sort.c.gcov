@@ -1,0 +1,304 @@
+        -:    0:Source:src/sort.c
+        -:    0:Graph:sort.gcno
+        -:    0:Data:sort.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * =====================================================================================
+        -:    3: *
+        -:    4: *       Filename:  swap.c
+        -:    5: *
+        -:    6: *    Description:
+        -:    7: *
+        -:    8: *        Version:  1.0
+        -:    9: *        Created:  11/30/2014 04:48:54 PM
+        -:   10: *       Revision:  none
+        -:   11: *       Compiler:  gcc
+        -:   12: *
+        -:   13: *         Author:  YOUR NAME (),
+        -:   14: *   Organization:
+        -:   15: *
+        -:   16: * =====================================================================================
+        -:   17: */
+        -:   18:
+        -:   19:#include"sort.h"
+        -:   20:#include<string.h>
+        -:   21:#include<stdlib.h>
+        -:   22:
+function selection_sort called 1 returned 100% blocks executed 100%
+        1:   23:void selection_sort(int *array, int size){
+        -:   24:    int i, j, min, aux;
+        5:   25:      for (i = 0; i < (size-1); i++){
+branch  0 taken 80%
+branch  1 taken 20% (fallthrough)
+        4:   26:        min = i;
+       14:   27:        for (j = (i+1); j < size; j++) {
+branch  0 taken 71%
+branch  1 taken 29% (fallthrough)
+       10:   28:            if(array[j] < array[min]){
+branch  0 taken 20% (fallthrough)
+branch  1 taken 80%
+        2:   29:                min = j;
+        -:   30:              }
+        -:   31:        }
+        4:   32:        if (i != min){
+branch  0 taken 25% (fallthrough)
+branch  1 taken 75%
+        1:   33:            aux = array[i];
+        1:   34:              array[i] = array[min];
+        1:   35:              array[min] = aux;
+        -:   36:        }
+        -:   37:    }
+        1:   38:}
+        -:   39:
+        -:   40:
+function insertion_sort called 1 returned 100% blocks executed 100%
+        1:   41:void insertion_sort(int *array, int size) {
+        -:   42:   int i, j, selected;
+        5:   43:   for (i = 1; i < size; i++){
+branch  0 taken 80%
+branch  1 taken 20% (fallthrough)
+        4:   44:      selected = array[i];
+        4:   45:      j = i - 1;
+       13:   46:      while ((j >= 0) && (selected < array[j])) {
+branch  0 taken 78% (fallthrough)
+branch  1 taken 22%
+branch  2 taken 71%
+branch  3 taken 29% (fallthrough)
+        5:   47:         array[j+1] = array[j];
+        5:   48:         j--;
+        -:   49:      }
+        4:   50:      array[j+1] = selected;
+        -:   51:   }
+        1:   52:}
+        -:   53:
+function shell_sort called 1 returned 100% blocks executed 100%
+        1:   54:void shell_sort(int *array, int size) {
+        -:   55:    int i , j , value;
+        1:   56:    int gap = 1;
+        4:   57:    while(gap < size) {
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        2:   58:        gap = 3*gap+1;
+        -:   59:    }
+        4:   60:    while (gap > 1) {
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        2:   61:        gap /= 3;
+        7:   62:        for(i = gap; i < size; i++) {
+branch  0 taken 71%
+branch  1 taken 29% (fallthrough)
+        5:   63:            value = array[i];
+        5:   64:            j = i - gap;
+       15:   65:            while (j >= 0 && value < array[j]) {
+branch  0 taken 80% (fallthrough)
+branch  1 taken 20%
+branch  2 taken 63%
+branch  3 taken 38% (fallthrough)
+        5:   66:                array [j + gap] = array[j];
+        5:   67:                j -= gap;
+        -:   68:            }
+        5:   69:            array [j + gap] = value;
+        -:   70:        }
+        -:   71:    }
+        1:   72:}
+        -:   73:
+function quick_sort called 0 returned 0% blocks executed 0%
+    #####:   74:void quick_sort(int array[], int left, int right) {
+        -:   75:    int i, j, pivot, y;
+    #####:   76:    i = left;
+    #####:   77:    j = right;
+        -:   78:
+    #####:   79:    pivot = array[(i+j) / 2];
+        -:   80:
+    #####:   81:    while(i <= j) {
+branch  0 never executed
+branch  1 never executed
+    #####:   82:        while(array[i] < pivot && i < right){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   83:            i++;
+        -:   84:        }
+    #####:   85:        while(array[j] > pivot && j > left){
+branch  0 never executed
+branch  1 never executed
+branch  2 never executed
+branch  3 never executed
+    #####:   86:            j--;
+        -:   87:        }
+    #####:   88:        if(i <= j){
+branch  0 never executed
+branch  1 never executed
+    #####:   89:            y = array[i];
+    #####:   90:            array[i] = array[j];
+    #####:   91:            array[j] = y;
+    #####:   92:            i++;
+    #####:   93:            j--;
+        -:   94:        }
+        -:   95:    }
+        -:   96:    /** Recursive call for the function to the left part of the array */
+    #####:   97:    if(j > left){
+branch  0 never executed
+branch  1 never executed
+    #####:   98:        quick_sort(array, left, j);
+call    0 never executed
+        -:   99:    }
+        -:  100:
+        -:  101:    /** Recursive call for the function to the right part of the array */
+    #####:  102:    if(i < right){
+branch  0 never executed
+branch  1 never executed
+    #####:  103:        quick_sort(array, i, right);
+call    0 never executed
+        -:  104:    }
+    #####:  105:}
+        -:  106:
+function heap_sort called 1 returned 100% blocks executed 100%
+        1:  107:void heap_sort(int array[], int n){
+        1:  108:    int i = n/2, father, child, t;
+        -:  109:
+        -:  110:    for(;;) {
+       13:  111:        if (i > 0) {
+branch  0 taken 29% (fallthrough)
+branch  1 taken 71%
+        2:  112:            i--;
+        2:  113:            t = array[i];
+        -:  114:        }
+        -:  115:        else {
+        5:  116:            n--;
+        5:  117:            if (n <= 0)
+branch  0 taken 20% (fallthrough)
+branch  1 taken 80%
+        2:  118:               return;
+        4:  119:            t = array[n];
+        4:  120:            array[n] = array[0];
+        -:  121:        }
+        -:  122:
+        6:  123:        father = i;
+        -:  124:
+        -:  125:        //Compare with the left child
+        6:  126:        child = i*2+1;
+        -:  127:
+       16:  128:        while (child < n){
+branch  0 taken 60%
+branch  1 taken 40% (fallthrough)
+        6:  129:            if ((child + 1 < n)  &&  (array[child + 1] > array[child])){
+branch  0 taken 67% (fallthrough)
+branch  1 taken 33%
+branch  2 taken 50% (fallthrough)
+branch  3 taken 50%
+        2:  130:              	child++;
+        -:  131:            }
+        6:  132:          	if (array[child] > t){
+branch  0 taken 67% (fallthrough)
+branch  1 taken 33%
+        4:  133:             	array[father] = array[child];
+        4:  134:             	father = child;
+        4:  135:             	child = father*2 + 1;
+        2:  136:          	} else break;
+        -:  137:      	}
+        6:  138:     	 array[father] = t;
+        -:  139:   	}
+        -:  140:}
+        -:  141:
+function top_down_merge called 9 returned 100% blocks executed 100%
+        9:  142:void top_down_merge(int* a,int begin,int end,int* b){
+        9:  143:    int middle = (end+begin)/2;
+        9:  144:    int i0 = begin;
+        9:  145:    int i1 = middle;
+        -:  146:    int index;
+        9:  147:    int n = end-begin;
+        -:  148:
+        9:  149:    if(n < 2){
+branch  0 taken 56% (fallthrough)
+branch  1 taken 44%
+        5:  150:        return;
+        -:  151:    }
+        -:  152:
+        4:  153:    top_down_merge(a, begin, middle, b);
+call    0 returned 100%
+        4:  154:    top_down_merge(a, middle, end, b);
+call    0 returned 100%
+        -:  155:
+       16:  156:    for (index = begin; index < end; index++) {
+branch  0 taken 75%
+branch  1 taken 25% (fallthrough)
+       12:  157:        if (i0 < middle && (i1 >= end || a[i0] <= a[i1])){
+branch  0 taken 75% (fallthrough)
+branch  1 taken 25%
+branch  2 taken 89% (fallthrough)
+branch  3 taken 11%
+branch  4 taken 50% (fallthrough)
+branch  5 taken 50%
+        5:  158:            b[index] = a[i0];
+        5:  159:            i0++;
+        -:  160:        }else{
+        7:  161:            b[index] = a[i1];
+        7:  162:            i1++;
+        -:  163:        }
+        -:  164:    }
+        -:  165:
+        4:  166:    memcpy((a+begin),(b+begin),sizeof(int)*(n));
+        -:  167:}
+        -:  168:
+function merge_sort called 1 returned 100% blocks executed 100%
+        1:  169:void merge_sort(int* a,int n){
+        1:  170:    int* b = (int*)malloc(sizeof(int)*n);
+        1:  171:    top_down_merge(a, 0, n, b);
+call    0 returned 100%
+        1:  172:    free(b);
+        1:  173:}
+        -:  174:
+        -:  175:/**
+        -:  176: * Method that receives a pointer to an array that will be sorted,
+        -:  177: * his size and the constant of the method that will be used
+        -:  178: * @param  array  Array to be sorted
+        -:  179: * @param  size   Size of the array
+        -:  180: * @param  method Sorting algorithm constant
+        -:  181: * @return        Pointer to the sorted array
+        -:  182: */
+function sort_array called 5 returned 100% blocks executed 87%
+        5:  183:int* sort_array(int *array, int size, int method){
+        -:  184:
+        5:  185:    switch(method){
+branch  0 taken 20%
+branch  1 taken 20%
+branch  2 taken 20%
+branch  3 taken 0%
+branch  4 taken 20%
+branch  5 taken 20%
+branch  6 taken 0%
+        1:  186:        case SELECTION:
+        1:  187:            selection_sort(array, size);
+call    0 returned 100%
+        1:  188:        break;
+        -:  189:
+        1:  190:        case INSERTION:
+        1:  191:            insertion_sort(array, size);
+call    0 returned 100%
+        1:  192:        break;
+        -:  193:
+        1:  194:        case SHELL:
+        1:  195:            shell_sort(array, size);
+call    0 returned 100%
+        1:  196:        break;
+        -:  197:
+    #####:  198:        case QUICK:
+    #####:  199:            quick_sort(array, 0, size - 1);
+call    0 never executed
+    #####:  200:        break;
+        -:  201:
+        1:  202:        case HEAP:
+        1:  203:            heap_sort(array, size);
+call    0 returned 100%
+        1:  204:        break;
+        -:  205:
+        1:  206:        case MERGE:
+        1:  207:            merge_sort(array, size);
+call    0 returned 100%
+        1:  208:        break;       
+        -:  209:    }
+        5:  210:    return array;
+        -:  211:}
